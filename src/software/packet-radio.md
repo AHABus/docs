@@ -42,20 +42,10 @@ independent from each other as possible. The rationale behind that is that one
 layer could be swapped for a different implementation without impacting the
 design of the other layers.
 
-
-
-### Radio Link Layer
-
-
-### Frame Layer
-
-
-### Application Layer.
-
 ## Related Documents
 
- 1. [AHABus Architecture Overview][d1]
- 2. [AHABus Payload Bus Protocol Specification][d2]
+ * [AHABus Architecture Overview][d1]
+ * [AHABus Payload Bus Protocol Specification][d2]
 
 ## References
 

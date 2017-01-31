@@ -6,7 +6,7 @@ transmit telemetry over radio and gather data from payload over the main payload
 bus.
 
 The documentation for the software-level communication protocols is located in
-`software/`, and the documentation for the hardware bus interface will
-eventually be added to `hardware/`.
+`src/software/`, and the documentation for the hardware bus interface will
+eventually be added to `src/hardware/`.
 
  [1]: https://github.com/ahabus/fcore
