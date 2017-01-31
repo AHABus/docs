@@ -65,7 +65,7 @@ can provide a binary stream.
 ### AHABus Frames
 
     struct radio_frame {
-        00: u16         start_marker
+        00: b16         start_marker
         02: u8          protocol_version
         03: u16         sequence_number
         04: b8[220]     data
