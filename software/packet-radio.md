@@ -16,7 +16,7 @@ wavelength band transmissions at a power no higher than 10 mW.
 
 The model used by low-cost High Altitude Balloon missions (one way, two-point
 non multiplexed RTTY link), there is no real network to speak of. For this
-reason, the OSI layers model is hardly applicable to the AHABus protocol.
+reason, the OSI layers model (2) is hardly applicable to the AHABus protocol.
 
 None the less, the protocol follows a layer model, described here in increasing
 levels of abstraction: the application-level packets are encapsulated in frames,
@@ -41,7 +41,9 @@ stream of bits to an analogue radio signal.
  1. Ofcom (2014). IR 2030 - [UK Interface Requirements 2030 Licence Exempt
     Short Range Devices][1]. London
     
- 2. UKHAS (2010). [Reed-Solomon Encoder (255,223)][1].
+ 4. Stallings, W. (1987). Handbook of computer- communications standards. Macmillan. isbn: 002948071X.
+    
+ 3. UKHAS (2010). [Reed-Solomon Encoder (255,223)][1].
 
 
  [1]: https://www.ofcom.org.uk/__data/assets/pdf_file/0028/84970/ir_2030-june2014.pdf
