@@ -42,6 +42,26 @@ independent from each other as possible. The rationale behind that is that one
 layer could be swapped for a different implementation without impacting the
 design of the other layers.
 
+### Radio Link
+
+The lowest-level layer of the AHABus Radio Protocol is the radio link. Its only
+role is to provide a raw binary stream between the payload and the ground
+station, without consideration for the transmitted data's structure.
+
+Because of the restrictions imposed on airborne radio transmission equipment in
+the United Kingdom [1], the chosen physical link is:
+ 
+    frequency:      434MHz band
+    power:          < 10mW
+    Modulation:     FSK/AFSK
+     
+    Encoding:       RTTY (8bit-bytes, No parity bit, 2 stop bits)
+    Rate:           50-300bauds
+
+These are guidelines only, and can be swapped for other types of modulation
+and encoding where it is legal to do so, and as long as the chosen encoding
+can provide a binary stream.
+
 ## Related Documents
 
  * [AHABus Architecture Overview][d1]
