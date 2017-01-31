@@ -62,6 +62,29 @@ These are guidelines only, and can be swapped for other types of modulation
 and encoding where it is legal to do so, and as long as the chosen encoding
 can provide a binary stream.
 
+### AHABus Frames
+
+    struct radio_frame {
+        00: u16         start_marker
+        02: u8          protocol_version
+        03: u16         sequence_number
+        04: b8[220]     data
+        e0: b8[32]      fec_code
+    }
+
+### AHABus Packets
+
+    struct radio_packet {
+        00: u8          protocol_version
+        01: u8          instrument_id
+        02: u16         sequence_number
+        04: u16         length
+        06: u16         latitude
+        08: u16         longitude
+        0a: u16         altitude
+        0c: b8[length]  data
+    }
+
 ## Related Documents
 
  * [AHABus Architecture Overview][d1]
