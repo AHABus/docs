@@ -45,7 +45,8 @@ design of the other layers.
 On every layer above the data-link layer, any multi-octet field must be
 transmitted in network byte order (little-endian). Integers must be transmitted
 in two's-complement binary format, floating point values in IEEE754 single
-precision.
+precision. Values sent as fixed-point have their fractional and integer bit
+width specified when required.
 
 ### Radio Link
 
@@ -112,9 +113,9 @@ length.
  * The secondary header contains ancillary data required for the support of the
    mission:
     * AHABus platform's latitude in decimal format at the time the packet was
-      encoded, in 8/24 fixed point format,
+      encoded, in (8.24) fixed point format,
     * AHABus platform's longitude in decimal format at the time the packet was
-      encoded, in 8/24 fixed point format,
+      encoded, in (8.24) fixed point format,
     * AHABus platform's altitude in metres at the time the packet was encoded,
       in 16-bit unsigned integer format.
 
