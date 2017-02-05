@@ -82,6 +82,8 @@ The last 32 octets of each frame make up the frame's Reed-Solomon (255,223) [3]
 FEC code, used to correct data corruptions on reception of each frame. The
 code is computed using the complete frame, sync marker and header included.
 
+**AHABus Frame Structure**
+
     struct radio_frame {
         00: b16         start_marker = { 0xAA, 0x5A }
         02: u8          protocol_version
@@ -90,15 +92,41 @@ code is computed using the complete frame, sync marker and header included.
         e0: b8[32]      fec_code
     }
 
-### AHABus Packets
+### Application Layer
+
+The application layer provides the support for the high-level AHABus operations:
+packets encapsulate both each instruments' data samples, but also ancillary
+data that is required to support a High-Altitude Balloon mission. Packets also
+allow multiple instruments' data to be sent over a shared connection.
+
+Each packet is composed of a primary and second header, and a body of variable
+length.
+
+ * The primary header contains data required for the packet decoder to parse
+   and dispatch the packet's data correctly:
+   
+    * AHABus protocol version,
+    * Payload ID of the instruments who's data is carried in the packet,
+    * Packet's length in bytes, including the header.
+
+ * The secondary header contains ancillary data required for the support of the
+   mission:
+    * AHABus platform's latitude in decimal format at the time the packet was
+      encoded, in 8/24 fixed point format,
+    * AHABus platform's longitude in decimal format at the time the packet was
+      encoded, in 8/24 fixed point format,
+    * AHABus platform's altitude in metres at the time the packet was encoded,
+      in 16-bit unsigned integer format.
+
+**AHABus Packet Structure**
 
     struct radio_packet {
         00: u8          protocol_version
         01: u8          instrument_id
         02: u16         sequence_number
         04: u16         length
-        06: u16         latitude
-        08: u16         longitude
+        06: f32         latitude
+        08: f32         longitude
         0a: u16         altitude
         0c: b8[length]  data
     }
