@@ -42,6 +42,11 @@ independent from each other as possible. The rationale behind that is that one
 layer could be swapped for a different implementation without impacting the
 design of the other layers.
 
+On every layer above the data-link layer, any multi-octet field must be
+transmitted in network byte order (little-endian). Integers must be transmitted
+in two's-complement binary format, floating point values in IEEE754 single
+precision.
+
 ### Radio Link
 
 The lowest-level layer of the AHABus Radio Protocol is the radio link. Its only
