@@ -119,12 +119,15 @@ length.
     * AHABus platform's altitude in metres at the time the packet was encoded,
       in 16-bit unsigned integer format.
 
+Packets transmitted over AHABus frame streams should be aligned on frame
+boundaries. Each packet should start on a new frame, and the end of a packet
+should be the last data in a frame.
+
 **AHABus Packet Structure**
 
     struct radio_packet {
         00: u8          protocol_version
         01: u8          instrument_id
-        02: u16         sequence_number
         04: u16         length
         06: f32         latitude
         08: f32         longitude
