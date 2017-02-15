@@ -1,8 +1,8 @@
 # AHABus Packet Radio Protocol
 
     author:     Cesar Parent <cesar@cesarparent.com>
-    version:    0.1
-    date:       2017-01-31
+    version:    0.2
+    date:       2017-02-15
 
 This document describes the protocol used by the AHABus platform (or any other
 compliant bus) to transfer telemetry data from an airborne platform (typically,
@@ -155,4 +155,4 @@ should be the last data in a frame.
  [d2]: //todo
 
  [r1]: https://www.ofcom.org.uk/__data/assets/pdf_file/0028/84970/ir_2030-june2014.pdf
- [r2]: https://ukhas.org.uk/code:rs8encode
+ [r2]: http://ukhas.org.uk/code:rs8encode

@@ -2,5 +2,37 @@
 
     author:     Cesar Parent <cesar@cesarparent.com>
     version:    0.1
-    date:       2017-01-31
+    date:       2017-02-15
 
+This document describes the protocol used by the AHABus platform (or any other
+compliant bus) to communicate and fetch data from payload instruments hosted on
+an FCORE data bus.
+
+## Protocol Overview
+
+The AHABus protocol (AHAP) is designed to provide an asymmetric communication
+platform between a High-Altitude Balloon mission's instruments and the main
+flight computer (FCORE).
+
+AHAP relies on the two-wire (Phillips I2C) protocol to establish a connection
+between the main computer and each payload. Communications are controlled
+solely by the main computer: a payload can only send or receive data when it
+has been addressed.
+
+Because the AHABus platform relies on low-bandwidth data, data rate caps can be
+enforced on each payload. These caps are defined on a per-mission basis. If a
+payload returns more data than it is allowed to the computer will stop
+addressing it.
+
+FCORE (the software component of the AHABus flight computer) will address each
+payload in turn over a certain period of time. By default, each payload has the
+same data rate restrictions. If priorities are given to payloads, higher
+priority payloads will be allowed higher data caps than their low-priority
+counterparts.
+
+AHAP is a virtual remote memory access protocol. After opening a communication
+line with a payload, the computer requests the data at certain virtual memory
+addresses (defined in further sections) to obtain payload data and metadata
+relating to it. There are no requirement that those addresses map to physical
+addresses on each instrument's controller -- just that the instrument return
+the expected pieces of data or metadata.
