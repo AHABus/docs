@@ -36,3 +36,14 @@ addresses (defined in further sections) to obtain payload data and metadata
 relating to it. There are no requirement that those addresses map to physical
 addresses on each instrument's controller -- just that the instrument return
 the expected pieces of data or metadata.
+
+## Virtual Registers
+
+Payloads that implement AHAP should provided specific information in certain
+virtual registers, mapped at the following addresses:
+
+| Address   | Name          |                                               |
+|:----------|:--------------|:----------------------------------------------|
+| `$00`     | Status        | `0x01` when payload is ready                  |
+| `$01`     | Data Pointer  | Address of the first byte of available data   |
+| `$02-$03` | Data Length   | Number of bytes of available data             |
