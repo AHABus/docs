@@ -83,12 +83,17 @@ The last 32 octets of each frame make up the frame's Reed-Solomon (255,223) [3]
 FEC code, used to correct data corruptions on reception of each frame. The
 code is computed using the complete frame, sync marker and header included.
 
+A frame should start to be decoded when the incoming byte in the streams goes
+from `0xAA` to `0x5A`. There can be any number of sync bytes (`0xAA`). The
+frame marker (`0x5A`) is part of the frame's 256 bytes, but is not counted when
+computing the Reed-Solomon error-correction code for the frame.
+
 **AHABus Frame Structure**
 
     struct radio_frame {
-        00: b16         start_marker = { 0xAA, 0x5A }
-        02: u8          protocol_version
-        03: u16         sequence_number
+        00: u8          start_marker = 0x5A
+        01: u8          protocol_version
+        02: u16         sequence_number
         04: b8[220]     data
         e0: b8[32]      fec_code
     }
