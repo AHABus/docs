@@ -44,6 +44,23 @@ virtual registers, mapped at the following addresses:
 
 | Address   | Name          |                                               |
 |:----------|:--------------|:----------------------------------------------|
-| `$00`     | Status        | `0x01` when payload is ready                  |
-| `$01`     | Data Pointer  | Address of the first byte of available data   |
-| `$02-$03` | Data Length   | Number of bytes of available data             |
+| `$00`     | Tx Flag       | `0x01` when the bus controller is addressing  |
+| `$01-$02` | Data Length   | Number of bytes of available data             |
+| `$10-XX`  | Data          | Start of data made available to the bus       |
+
+## Synopsis
+
+In typical operations, a bus controller/payload interaction follows these steps:
+
+ 1. The bus controller addresses the payload's address and writes `0x01` in
+    the Tx Flag register. At this point, the payload should not change the
+    contents of any of the public registers.
+    
+ 2. The bus controller requests the contents of the of Data Length register by
+    writing its address on the bus, then reading two bytes. If no data is
+    available (Data Length = `0x0000`), the controller goes to step 4.
+    
+ 3. The bus controller requests the data by writing the address of the data
+    area, and reads `Data Length` bytes.
+
+ 4. The bus controller writes `0x0` in the payload's Tx
