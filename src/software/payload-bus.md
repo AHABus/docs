@@ -44,9 +44,24 @@ virtual registers, mapped at the following addresses:
 
 | Address   | Name          |                                               |
 |:----------|:--------------|:----------------------------------------------|
-| `$00`     | Tx Flag       | `0x01` when the bus controller is addressing  |
-| `$01-$02` | Data Length   | Number of bytes of available data             |
-| `$10-XX`  | Data          | Start of data made available to the bus       |
+| `$00[1]`  | Tx Flag       | `0x01` when the bus controller is addressing  |
+| `$01[2]`  | Data Length   | Number of bytes of available data             |
+| `$10[-]`  | Data          | Start of data made available to the bus       |
+
+## Communications format
+
+AHABus supports two types of communications. Communication is always initiated
+by the bus controller. The first operation of a transmission is always a write
+from the controller to the payload.
+
+ * Read Com: The controller writes one byte indicating which address is being
+   read, and listens for one or more bytes. The number of bytes expected to be
+   sent by the payload depends on the requested address. If it is one of the
+   virtual registers, one or two byte is expected. In the case of the Data
+   memory area, exactly `Data Length` bytes will be accepted by the controller.
+ 
+ * Write Com: The controller writes one byte indicating which address is being
+   written, followed by one byte to be written to that address in the payload.
 
 ## Synopsis
 
