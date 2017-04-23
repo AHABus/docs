@@ -1,7 +1,7 @@
 # AHABus Packet Radio Protocol
 
     author:     Amy Parent <amy@amyparrent.com>
-    version:    0.2
+    version:    3
     date:       2017-02-15
 
 This document describes the protocol used by the AHABus platform (or any other
