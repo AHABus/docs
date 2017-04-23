@@ -1,5 +1,9 @@
 # AHABus Documentation
 
+    Version 0.1-A3
+    Author: Amy parent <amy@amyparent.com>
+    Date:   2017-04-23
+
 This repository contains the documentation for the AHABus High-Altitude Balloon
 platform, its core flight software ([FCORE][1]) and the protocols it uses to
 transmit telemetry over radio and gather data from payload over the main payload

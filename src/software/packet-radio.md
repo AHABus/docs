@@ -1,6 +1,6 @@
 # AHABus Packet Radio Protocol
 
-    author:     Cesar Parent <cesar@cesarparent.com>
+    author:     Amy Parent <amy@amyparrent.com>
     version:    0.2
     date:       2017-02-15
 
@@ -142,8 +142,7 @@ should be the last data in a frame.
 
 ## Related Documents
 
- * [AHABus Architecture Overview][d1]
- * [AHABus Payload Bus Protocol Specification][d2]
+ * [AHABus Payload Bus Protocol Specification][d1]
 
 ## References
 
@@ -155,9 +154,7 @@ should be the last data in a frame.
     
  3. UKHAS (2010). [Reed-Solomon Encoder (255,223)][r2].
 
-
- [d1]: //todo
- [d2]: //todo
+ [d1]: https://github.com/AHABus/src/software/payload-bus.md
 
  [r1]: https://www.ofcom.org.uk/__data/assets/pdf_file/0028/84970/ir_2030-june2014.pdf
  [r2]: http://ukhas.org.uk/code:rs8encode

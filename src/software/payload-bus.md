@@ -1,6 +1,6 @@
 # AHABus Payload Bus Protocol
 
-    author:     Cesar Parent <cesar@cesarparent.com>
+    author:     Amy Parent <amy@amyparrent.com>
     version:    0.1
     date:       2017-02-15
 
@@ -50,26 +50,22 @@ virtual registers, mapped at the following addresses:
 
 ## Communications format
 
-AHABus supports two types of communications. Communication is always initiated
-by the bus controller. The first operation of a transmission is always a write
-from the controller to the payload.
+AHABus uses the I2C protocol to denote whether an address is being read, or
+written to. Communication is always initiated by the Bus Controller.
 
- * Read Com: The controller writes one byte indicating which address is being
-   read, and listens for one or more bytes. The number of bytes expected to be
-   sent by the payload depends on the requested address. If it is one of the
-   virtual registers, one or two byte is expected. In the case of the Data
-   memory area, exactly `Data Length` bytes will be accepted by the controller.
- 
- * Write Com: The controller writes one byte indicating which address is being
-   written, followed by one byte to be written to that address in the payload.
+To accommodate low-budget, low-power devices which may present small I2C
+transmission buffers, the AHABus protocol does not allow transmission of more
+than 32 bytes at once. If a payload must send more than 32 bytes of data, the
+controller will read its data sequentially, in chunks of 32 bytes starting at
+address `$10`.
 
 ## Synopsis
 
 In typical operations, a bus controller/payload interaction follows these steps:
 
- 1. The bus controller addresses the payload's address and writes `0x01` in
-    the Tx Flag register. At this point, the payload should not change the
-    contents of any of the public registers.
+ 1. The bus controller addresses the payload's address and writes `0xff` in
+    the Tx Flag register. At this point, the payload must not change the
+    contents of any of its public registers.
     
  2. The bus controller requests the contents of the of Data Length register by
     writing its address on the bus, then reading two bytes. If no data is
@@ -78,4 +74,16 @@ In typical operations, a bus controller/payload interaction follows these steps:
  3. The bus controller requests the data by writing the address of the data
     area, and reads `Data Length` bytes.
 
- 4. The bus controller writes `0x0` in the payload's Tx
+ 4. The bus controller writes `0x0` in the payload's Tx Flag register. The
+    connection is considered close after this point.
+
+In the event where any of the connection's communication would fail, the bus
+controller skips any further steps and attempts to close the connection.
+
+## Related Documents
+
+ * [AHABus Packet Radio Protocol Specification][d1]
+
+## References
+
+ [d1]: https://github.com/AHABus/src/software/packet-radio.md
