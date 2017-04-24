@@ -84,6 +84,4 @@ controller skips any further steps and attempts to close the connection.
 
  * [AHABus Packet Radio Protocol Specification][d1]
 
-## References
-
  [d1]: https://github.com/AHABus/src/software/packet-radio.md
