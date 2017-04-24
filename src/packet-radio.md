@@ -133,8 +133,8 @@ should be the last data in a frame.
         00: u8          protocol_version
         01: u8          instrument_id
         04: u16         length
-        06: u32         latitude
-        08: u32         longitude
+        06: i32         latitude
+        08: i32         longitude
         0a: u16         altitude
         0c: b8[length]  data
     }
